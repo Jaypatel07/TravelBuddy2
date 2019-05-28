@@ -1,0 +1,66 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper {
+    margin: 0px auto;
+    height: 900px;
+    width: 650px;
+    outline: 2px solid black;
+}
+
+.travelheader {
+    width: 650px;
+    height: 35px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.travelheader h1 {
+    width: 325px;
+    height: 35px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.topright {
+    width: 315px;
+    height: 35px;
+    vertical-align: top;
+    display: inline-block;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.topright :nth-child(1) {
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.Trips {
+    width: 625px;
+    height: 350px;
+    margin-left: 10px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Buddy Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'TripApp/css/style.css'%}">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="travelheader">
+            <h1>Hello, {{request.session.name}}!</h1>
+            <div class="topright">
+                <a href="/dashboard/add">Create a new Trip!</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        <div class="Trips">
+            <h3>Your Trips:</h3>
+            <table class="TripTable">
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Actions</th>
+                </tr>
+                {% for trip in trips %}
+                <tr>
+                    <td><a href="/dashboard/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.plan}}</td>
+                    {% for mytrip in mytrips|slice:":1" %}
+                        {% if trip.created_by == mytrip.created_by %}
+                            <td><a href="/delete/{{trip.id}}">Remove</a> | <a href="/edit/{{trip.id}}">Edit</a></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% if trip.created_by.id != request.session.userid %}
+                        <td><a href="/deletejoin/{{trip.id}}">Cancel</a>
+                    {% endif %}
+                    {% endfor %}
+            
+                </tr>
+              
+            </table>
+        </div>
+        <div class="OtherTrips">
+            <h3>Other People's Trips </h3>
+            <table class="OtherTable">
+                <tr>
+                    <th>Destination</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Plan</th>
+                    <th>Want to Join?</th>
+                </tr>
+                {% if other_trips %}
+                {% for trip in other_trips %}
+                <tr>
+                    <td><a href="/dashboard/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                    <td>{{trip.start_date}}</td>
+                    <td>{{trip.end_date}}</td>
+                    <td>{{trip.plan}}</td>
+                    <td><a href="/dashboard/join/{{trip.id}}">Join</td></a>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+        <br>
+        <br>
+
+    </div>
+
+</body>
+
+</html>

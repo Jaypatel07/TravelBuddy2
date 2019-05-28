@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+
+<body>
+    <h3>Hello, {{request.session.name}}! Edit your trip!</h3> <a href="/logout">Logout</a>
+    <br>
+    <h2>{{trip.destination }}</h2>
+    <div class="trip">
+        <form action="/dashboard/edit_trip/{{trip.id}}" method="POST">
+            {% csrf_token %}
+            <label for="destination">Desination: </label><input type="text" name="destination" value="{{ trip.destination }}"><br>
+            <label for="description">Description: </label><input type="text" name="description" value=" {{trip.plan}}"><br>
+            <label for="date_from">Start Date: </label><input type="date" name="date_from" value="{{trip.start_date}}"><br>
+            <label for="date_to">End Date: </label><input type="date" name="date_to" value="{{trip.end_date}}">
+            <input type="hidden" name="userid" value="{{request.session.userid}}">
+            <input type="submit" value="Edit">
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+
+</html>

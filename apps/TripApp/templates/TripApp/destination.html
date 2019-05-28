@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Trip</title>
+</head>
+<body>
+    <h3>Hello, {{request.session.name}}! Read about this trip!</h3>
+    <br>
+    <a href="/dashboard/">Dashboard</a> | <a href="/logout">Logout</a>
+    <br>
+    <h2>{{ trip.destination }}</h2>
+    <div class="trip">
+        <p>Start Date: {{trip.start_date}}</p>
+        <p>End Date: {{trip.end_date}}</p>
+        <p>Created On: {{trip.created_at}}</p>
+        <p>Last Updated: {{trip.updated_at}}</p>
+        <p>Plan: {{trip.plan}}</p>
+        <p>Created By: {{planner}}</p>
+        
+  
+    </div>
+    <div class="others">
+        <h3>Other Users Joining the Trip:</h3>
+        {% if others %}
+        <!-- .id != request.session.id -->
+            {% for other in others %}
+                <p>{{other.name}}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trip Buddy</title>
+    {% load static %}
+    <link rel="stylesheet"  type= "text/css" href="{% static 'LoginRegistration/css/style.css'%}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Welcome! Let's Travel!</h1>
+        <div class="registering">
+            <p class="LogRegTop">Register</p>
+            <form class="frontform" action="/processregistration" method="POST">
+                {% csrf_token %}
+                <label for="name">Name </label><input type="text" name="name"><br>
+                <label for="email">Email </label><input type="text" name="email"><br>
+                <label for="password">Password </label><input type="password" name="password"><br>
+                <label for="confirmpw">Confirm PW </label><input type="password" name="confirmpw"><br>
+                <input class="RegLogButton" type="submit" value="Register">
+            </form>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="loggingin">
+            <p class="LogRegTop">Login</p>
+            <form class="frontform" action="/processlogin" method="POST">
+                {% csrf_token %}
+                <label for="email">Email </label><input type="text" name="email"><br>
+                <label for="password">Password </label><input type="password" name="password"><br>
+                <input class="RegLogButton" type="submit" value="Login"><br>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
