@@ -12,5 +12,6 @@ Delete Trips
 HTML5  <br>
 CSS3  <br>
 Python  <br>
+Django <br>
 MySQL
 
